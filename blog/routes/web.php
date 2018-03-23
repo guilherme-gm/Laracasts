@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $tasks = [
+        'Go to store',
+        'task1',
+        'task2'
+    ];
+
+    return view('welcome', compact('tasks'));
 });
 
 Route::get('/about', function() {

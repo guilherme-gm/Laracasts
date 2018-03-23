@@ -11,14 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    $tasks = [
-        'Go to store',
-        'task1',
-        'task2'
-    ];
+Route::get('/tasks', function () {
+    $tasks = DB::table('tasks')->get();
 
-    return view('welcome', compact('tasks'));
+    return view('tasks.index', compact('tasks'));
+});
+
+Route::get('/tasks/{task}', function($id) {
+    $task = DB::table('tasks')->find($id);
+
+    return view('tasks.show', compact('task'));
 });
 
 Route::get('/about', function() {

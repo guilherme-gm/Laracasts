@@ -12,6 +12,33 @@ class PostsController extends Controller
         return view('posts.index');
     }
 
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function store()
+    {
+
+        // $post = new Post();
+        
+        // $post->title = request('title');
+        // $post->body = request('body');
+
+        // $post->save();
+
+        // Mass assign
+        // Post::create([
+        //     'title' => request('title'),
+        //     'body' => request('body')
+        // ]);
+
+        Post::create(request(['title', 'body']));
+
+        return redirect('/');
+        
+    }
+
     public function show(Post $post1)
     {
         return view('posts.show');

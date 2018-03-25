@@ -13,7 +13,7 @@
 
 use App\Task;
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'PostsController@index')->name('home');
 
 Route::get('/posts/create', 'PostsController@create');
 
@@ -26,6 +26,16 @@ Route::get('/posts/{post}', 'PostsController@show');
 Route::get('/tasks', 'TaskController@index');
 
 Route::get('/tasks/{task}', 'TaskController@show');
+
+Route::get('/register', 'RegistrationController@create');
+
+Route::post('/register', 'RegistrationController@store');
+
+Route::get('/login', 'SessionsController@create')->name('login');
+
+Route::post('/login', 'SessionsController@store');
+
+Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/about', function() {
     return view('about');

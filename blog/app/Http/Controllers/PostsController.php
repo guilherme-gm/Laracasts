@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Post;
+use App\Repositories\Posts;
 
 class PostsController extends Controller
 {
@@ -14,7 +15,7 @@ class PostsController extends Controller
         $this->middleware('auth')->except(['index', 'show']);
     }
 
-    public function index()
+    public function index(Posts $posts)
     {
         // $posts = Post::latest();
 
@@ -28,9 +29,14 @@ class PostsController extends Controller
 
         // $posts = $posts->get();
 
-        $posts = Post::latest()
-            ->filter(request(['month', 'year']))
-            ->get();
+        // $posts = Post::latest()
+        //     ->filter(request(['month', 'year']))
+        //     ->get();
+        
+        // Using repositories
+        // $posts = (new \App\Repositores\Posts)->all(); // bad
+        // good
+        $posts = $posts->all();
 
         return view('posts.index', compact('posts'));
     }

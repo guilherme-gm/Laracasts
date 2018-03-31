@@ -37,6 +37,8 @@ Route::post('/login', 'SessionsController@store');
 
 Route::get('/logout', 'SessionsController@destroy');
 
+Route::get('/posts/tags/{tag}', 'TagsController@index');
+
 Route::get('/about', function() {
     return view('about');
 });

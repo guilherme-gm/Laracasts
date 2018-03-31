@@ -3,16 +3,9 @@
 namespace App;
 
 use Carbon\Carbon;
-use App\Redis;
 
 class Post extends Model
 {
-
-    public function __construct()
-    {
-        
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
